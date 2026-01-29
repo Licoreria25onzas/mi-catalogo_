@@ -243,4 +243,40 @@ h1 {
 main {
   margin-top: 120px;
 }
+/* Estilo del nuevo botón de Horario, siguiendo tu estilo existente */
+.btn-horario {
+    background: #FF5733; /* Un color naranja, cámbialo si quieres */
+    color: white; /* Texto en blanco para mejor contraste */
+    /* Tus estilos generales de botón ya aplican aquí automáticamente */
+}
+
+/* Estilos funcionales para ocultar/mostrar */
+.horario-boton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.horario-contenido {
+    display: none; /* Esto oculta el horario por defecto */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 20px;
+}
+
+/* Clase para mostrar el contenido cuando el JS la añade */
+.mostrar {
+    display: block;
+}
+
+.horario-contenido ul {
+    list-style-type: none;
+    padding: 0;
+}
 
