@@ -266,34 +266,65 @@ main {
     text-decoration: none; /* Elimina el subrayado */
     font-weight: bold;
 }
-/* --- ESTILO PARA QUE LAS LINEAS DE HORARIO PAREZCAN BOTONES --- */
+/* --- ESTILOS DEFINITIVOS Y CORREGIDOS PARA EL HORARIO (Versión Final) --- */
 
-/* Quita estilos por defecto de la lista */
-.horario-contenido ul {
-    list-style-type: none; /* Elimina los puntos/viñetas */
-    padding: 0;            /* Elimina el padding del navegador */
-    margin: 10px 0;
-    text-align: center;    /* Centra el contenido de la lista */
+/* 1. Asegura que el contenedor principal NO se desborde y se centre en la página */
+.horario-container {
+    max-width: 350px !important; /* Ancho similar a tus otros botones */
+    margin: 20px auto !important;   /* <--- ESTO LO CENTRA HORIZONTALMENTE EN LA PAGINA */
+    text-align: center !important; /* Centra el texto y elementos inline-block dentro */
 }
 
-/* Aplica el estilo de botón a CADA línea (LI) */
-.horario-contenido li {
-    display: block;          /* Se comporta como un bloque para ocupar su propia línea */
-    padding: 10px 15px;      /* Espaciado interno */
-    margin: 8px auto;        /* Margen entre items y centra horizontalmente */
-    border-radius: 8px;      /* Bordes redondeados */
-    font-weight: bold;       /* Texto en negrita */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    
-    /* Colores: Usa el mismo verde oscuro de tus otros botones */
-    background-color: #2e7d32; 
-    color: white;            
-    
-    width: fit-content;      /* Ajusta el ancho al texto */
-    max-width: 90%;          /* Limita el ancho máximo */
-}
-
-/* Ajusta el color del botón principal de "Horario de Atención" si aún no está verde */
+/* 2. Estilo para el botón principal "Horario de Atención" */
 .btn-horario {
-    background: #2e7d32; /* El mismo verde para consistencia */
+    background: #2e7d32 !important; /* El color verde oscuro de tu app */
+    color: white !important;
+    padding: 10px 15px !important;
+    border: none !important;
+    border-radius: 8px !important; /* Bordes redondeados */
+    cursor: pointer !important;
+    font-size: 16px !important;
+    width: 100% !important;
+    display: block !important; 
+    text-decoration: none !important; 
+    font-weight: bold !important;
+    box-sizing: border-box !important; /* Crucial para que el padding no aumente el ancho total */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; 
+}
+
+/* 3. Estilo para la lista oculta */
+.horario-contenido {
+    /* display: none; <-- Asumo que esto lo maneja tu JS/clase .mostrar */
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 4. Quita los estilos por defecto de la lista (UL) */
+.horario-contenido ul {
+    list-style-type: none !important; /* Elimina las viñetas */
+    padding: 0 !important;            
+    margin: 0 !important;
+}
+
+/* 5. Aplica el estilo de botón verde a CADA línea (LI) */
+.horario-contenido li {
+    /* Usa flexbox para centrar perfectamente el texto */
+    display: flex !important;           /* Usa Flexbox para centrar contenido */
+    justify-content: center !important; /* Centra horizontalmente */
+    align-items: center !important;     /* Centra verticalmente */
+
+    padding: 10px 15px !important;      /* Espaciado interno */
+    margin: 8px 0 !important;           /* Margen entre items */
+    border-radius: 8px !important;      /* Bordes redondeados */
+    font-weight: bold !important;       
+    background-color: #2e7d32 !important; /* Mismo color verde */
+    color: white !important;            
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    width: 100% !important;
+    box-sizing: border-box !important; /* Crucial para que no se salga */
+}
+
+/* Clase para mostrar el contenido cuando el JS la añade */
+.mostrar {
+    display: block !important;
 }
