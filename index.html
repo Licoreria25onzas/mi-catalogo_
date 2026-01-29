@@ -3404,7 +3404,7 @@
 
 
 
-  </div>
+  <  </div> <!-- Aquí cierra el contenedor principal -->
 
   <!-- FLOAT CART -->
   <div class="carrito" onclick="abrirModal()">
@@ -3413,13 +3413,11 @@
   </div>
 
   <!-- MODAL -->
-  <div class="modal" id="modalCarrito" aria-hidden="true">
+  <div class="modal" id="modalCarrito" style="display:none;" aria-hidden="true">
     <div class="modal-contenido" role="dialog" aria-modal="true" aria-labelledby="titulo-carrito">
       <h2 id="titulo-carrito">Tu carrito</h2>
       <div id="listaCarrito"></div>
-
       <div class="total-line">Total: $ <span id="totalCarrito">0</span></div>
-
       <div class="modal-actions">
         <button class="btn-cerrar" onclick="cerrarModal()">Cerrar</button>
         <button class="btn-enviar" onclick="enviarCotizacion()">Enviar a WhatsApp</button>
@@ -3432,21 +3430,25 @@
   </footer>
 
   <script>
-    // carrito como objeto: { nombre: { precio, cantidad } }
     const carrito = {};
 
     function filtrarProductos(categoria) {
       document.querySelectorAll('.producto').forEach(el => {
-        if (categoria === 'todos' || el.classList.contains(categoria)) el.style.display = 'block';
-        else el.style.display = 'none';
+        if (categoria === 'todos' || el.classList.contains(categoria)) {
+          el.style.display = 'block';
+        } else {
+          el.style.display = 'none';
+        }
       });
     }
 
     function agregarCarrito(nombre, precio) {
-      if (carrito[nombre]) carrito[nombre].cantidad++;
-      else carrito[nombre] = { precio: precio, cantidad: 1 };
+      if (carrito[nombre]) {
+        carrito[nombre].cantidad++;
+      } else {
+        carrito[nombre] = { precio: precio, cantidad: 1 };
+      }
       actualizarContador();
-      // si modal visible, actualizar contenido
       if (document.getElementById('modalCarrito').style.display === 'flex') renderizarCarrito();
     }
 
@@ -3469,6 +3471,7 @@
       modal.style.display = 'flex';
       modal.setAttribute('aria-hidden','false');
     }
+
     function cerrarModal() {
       const modal = document.getElementById('modalCarrito');
       modal.style.display = 'none';
@@ -3489,133 +3492,66 @@
       keys.forEach((nombre, idx) => {
         const it = carrito[nombre];
         total += it.precio * it.cantidad;
-
-        // fila del item
         const row = document.createElement('div');
         row.className = 'item-carrito';
-
-        const info = document.createElement('div');
-        info.className = 'item-info';
-        info.innerHTML = `<strong>${idx + 1}. ${nombre}</strong>
-                          <div>$${it.precio.toLocaleString()}  × ${it.cantidad}</div>`;
-
-        const controls = document.createElement('div');
-        controls.className = 'qty-controls';
-
-        // minus button
-        const btnMinus = document.createElement('button');
-        btnMinus.className = 'qty-btn minus';
-        btnMinus.type = 'button';
-        btnMinus.title = 'Quitar uno';
-        btnMinus.innerHTML = '−';
-        btnMinus.addEventListener('click', () => {
-          quitarUnidad(nombre);
-        });
-
-        // display cantidad (opcional)
-        const qtyDisplay = document.createElement('div');
-        qtyDisplay.className = 'qty-display';
-        qtyDisplay.textContent = it.cantidad;
-
-        // plus button
-        const btnPlus = document.createElement('button');
-        btnPlus.className = 'qty-btn plus';
-        btnPlus.type = 'button';
-        btnPlus.title = 'Agregar uno';
-        btnPlus.innerHTML = '+';
-        btnPlus.addEventListener('click', () => {
-          agregarCarrito(nombre, it.precio);
-        });
-
-        controls.appendChild(btnMinus);
-        controls.appendChild(qtyDisplay);
-        controls.appendChild(btnPlus);
-
-        row.appendChild(info);
-        row.appendChild(controls);
+        row.innerHTML = `
+          <div class="item-info">
+            <strong>${idx + 1}. ${nombre}</strong>
+            <div>$${it.precio.toLocaleString()} × ${it.cantidad}</div>
+          </div>
+          <div class="qty-controls">
+            <button class="qty-btn minus" onclick="quitarUnidad('${nombre}')">−</button>
+            <div class="qty-display">${it.cantidad}</div>
+            <button class="qty-btn plus" onclick="agregarCarrito('${nombre}', ${it.precio})">+</button>
+          </div>`;
         container.appendChild(row);
       });
-
       document.getElementById('totalCarrito').textContent = total.toLocaleString();
     }
 
     function enviarCotizacion() {
       const keys = Object.keys(carrito);
-      if (keys.length === 0) {
-        alert('El carrito está vacío.');
-        return;
-      }
-
+      if (keys.length === 0) { alert('El carrito está vacío.'); return; }
       let cliente = prompt('Por favor ingresa tu nombre:');
       if (!cliente) cliente = 'Cliente';
-
-      let texto = '*COTIZACIÓN*' + '\n\n';
-      texto += 'Licorería 25 Onzas\n';
-      texto += 'NIT: 1032473461\n';
-      texto += 'Dirección: Calle 22 N° 20-67 Paipa - Boyacá\n';
-      texto += 'Correo: facturacion.25onzas@gmail.com\n\n';
-      texto += 'Cliente: ' + cliente + '\n\n';
-      texto += 'Productos solicitados:\n';
-
+      let texto = '*COTIZACIÓN*\n\nLicorería 25 Onzas\nCliente: ' + cliente + '\n\nProductos:\n';
       let total = 0;
-      let idx = 1;
-      keys.forEach(nombre => {
+      keys.forEach((nombre, i) => {
         const it = carrito[nombre];
-        texto += idx + '. ' + nombre + ' - $' + it.precio.toLocaleString() + ' x' + it.cantidad + '\n';
+        texto += (i+1) + '. ' + nombre + ' - $' + it.precio.toLocaleString() + ' x' + it.cantidad + '\n';
         total += it.precio * it.cantidad;
-        idx++;
       });
-
-      texto += '\n-----------------------------\n';
-      texto += 'TOTAL: $' + total.toLocaleString() + '\n';
-      texto += 'Gracias por preferirnos';
-
-      const wa = '573209116861'; // no modifiqué este número
-      const url = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(texto);
-      window.open(url, '_blank');
+      texto += '\nTOTAL: $' + total.toLocaleString();
+      window.open('https://wa.me' + encodeURIComponent(texto), '_blank');
     }
 
-   // BUSCADOR FUNCIONAL CON FILTRO
-const buscadorInput = document.getElementById('buscador');
-buscadorInput.addEventListener('input', function() {
-  const query = this.value.trim().toLowerCase();
-  document.querySelectorAll('.producto').forEach(prod => {
-    const name = prod.querySelector('h3').textContent.toLowerCase();
-    const categoriaVisible = prod.style.display !== 'none'; // respeta el filtro
-    prod.style.display = (name.includes(query) && categoriaVisible) ? 'block' : 'none';
-  });
-});
-
-// FUNCIONES PARA PRODUCTOS CON VARIAS PRESENTACIONES
-function actualizarPrecio(precioId, selectEl) {
-  const [ml, precio] = selectEl.value.split("|");
-  document.getElementById(precioId).textContent = "$" + Number(precio).toLocaleString();
-}
-
-function agregarPresentacion(nombre, selectId) {
-  const select = document.getElementById(selectId);
-  const [ml, precio] = select.value.split("|");
-  const nombreCompleto = `${nombre} ${ml}`;
-  agregarCarrito(nombreCompleto, Number(precio));
-}
-         header img{ max-height:90px; }
-      .productos{ padding:12px; }
-      .qty-btn{ width:32px; height:32px; }
+    // Buscador
+    const buscadorInput = document.getElementById('buscador');
+    if(buscadorInput) {
+      buscadorInput.addEventListener('input', function() {
+        const query = this.value.trim().toLowerCase();
+        document.querySelectorAll('.producto').forEach(prod => {
+          const name = prod.querySelector('h3').textContent.toLowerCase();
+          prod.style.display = name.includes(query) ? 'block' : 'none';
+        });
+      });
     }
-  </style>
-</head>
-<body>
-  </script>
-  <script>
+
+    function actualizarPrecio(precioId, selectEl) {
+      const [ml, precio] = selectEl.value.split("|");
+      document.getElementById(precioId).textContent = "$" + Number(precio).toLocaleString();
+    }
+
+    function agregarPresentacion(nombre, selectId) {
+      const select = document.getElementById(selectId);
+      const [ml, precio] = select.value.split("|");
+      agregarCarrito(`${nombre} ${ml}`, Number(precio));
+    }
+
     function toggleHorario() {
-        var horarioDetalle = document.getElementById("horarioDetalle");
-        if (horarioDetalle.style.display === "block" || horarioDetalle.style.display === "") {
-            horarioDetalle.style.display = "none";
-        } else {
-            horarioDetalle.style.display = "block";
-        }
+        var div = document.getElementById("horarioDetalle");
+        div.style.display = (div.style.display === "block") ? "none" : "block";
     }
-</script>
-
+  </script>
 </body>
 </html>
