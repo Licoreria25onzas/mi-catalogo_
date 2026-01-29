@@ -243,29 +243,60 @@ h1 {
 main {
   margin-top: 120px;
 }
-/* Estilo para cada item de la lista de horarios */
-.horario-contenido li {
-    /* Propiedades clave para que parezca un botón */
-    display: block;          /* Asegura que cada uno esté en su propia línea */
+/* --- Estilos para la sección de Horario (LISTOS) --- */
+
+/* Clase general para el color verde principal de los botones (WhatsApp/Fondo App) */
+.btn-color-primario {
+    background-color: #2e7d32; /* Verde Oscuro */
+    color: white;
+}
+
+/* Estilo del botón principal de "Horario de Atención" */
+.horario-boton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 350px; /* Limita el ancho como los otros botones */
+    text-align: center;
+    margin: 20px auto 10px auto; /* Centra el botón */
+    display: block; /* Asegura que el enlace se comporte como un bloque */
+    text-decoration: none; /* Elimina el subrayado */
+    font-weight: bold;
+}
+
+/* Contenedor de la lista de horarios que se oculta/muestra */
+.horario-contenido {
+    display: none; /* Oculta el horario por defecto */
+    margin-bottom: 20px;
+    max-width: 350px; /* Asegura que no sea más ancho que el botón de arriba */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Clase para mostrar el contenido cuando el JS la añade */
+.mostrar {
+    display: block;
+}
+
+/* Quita estilos por defecto de la lista */
+.horario-contenido ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo para CADA línea del horario (LI) para que parezca un botón individual */
+.item-boton {
+    display: block;          /* Se comporta como bloque */
     padding: 10px 15px;      /* Espaciado interno */
-    margin: 8px auto;        /* Margen entre items y centra horizontalmente */
+    margin: 8px 0;           /* Margen entre items */
     border-radius: 8px;      /* Bordes redondeados */
     text-align: center;      /* Centra el texto */
-    font-weight: bold;       /* Texto en negrita, como los botones */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    
-    /* Colores - Usaremos un verde similar al de WhatsApp/Instagram */
-    background-color: #2e7d32; /* Un verde oscuro, similar al fondo de tu app */
-    color: white;              /* Texto blanco */
-    
-    /* Control de ancho para que no se estire de más */
-    width: fit-content;      /* Se ajusta al ancho del texto */
-    max-width: 90%;          /* Limita el ancho máximo en pantallas grandes */
+    font-weight: bold;       /* Negrita */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    background-color: #2e7d32; /* Usa el mismo verde oscuro */
+    color: white;
 }
-
-/* Ajusta el color del botón principal de "Horario de Atención" 
-   para que coincida con el verde de los items de la lista */
-.btn-horario {
-    background: #2e7d32; 
-}
-
