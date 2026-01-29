@@ -266,37 +266,34 @@ main {
     text-decoration: none; /* Elimina el subrayado */
     font-weight: bold;
 }
-
-/* Contenedor de la lista de horarios que se oculta/muestra */
-.horario-contenido {
-    display: none; /* Oculta el horario por defecto */
-    margin-bottom: 20px;
-    max-width: 350px; /* Asegura que no sea más ancho que el botón de arriba */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Clase para mostrar el contenido cuando el JS la añade */
-.mostrar {
-    display: block;
-}
+/* --- ESTILO PARA QUE LAS LINEAS DE HORARIO PAREZCAN BOTONES --- */
 
 /* Quita estilos por defecto de la lista */
 .horario-contenido ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+    list-style-type: none; /* Elimina los puntos/viñetas */
+    padding: 0;            /* Elimina el padding del navegador */
+    margin: 10px 0;
+    text-align: center;    /* Centra el contenido de la lista */
 }
 
-/* Estilo para CADA línea del horario (LI) para que parezca un botón individual */
-.item-boton {
-    display: block;          /* Se comporta como bloque */
+/* Aplica el estilo de botón a CADA línea (LI) */
+.horario-contenido li {
+    display: block;          /* Se comporta como un bloque para ocupar su propia línea */
     padding: 10px 15px;      /* Espaciado interno */
-    margin: 8px 0;           /* Margen entre items */
+    margin: 8px auto;        /* Margen entre items y centra horizontalmente */
     border-radius: 8px;      /* Bordes redondeados */
-    text-align: center;      /* Centra el texto */
-    font-weight: bold;       /* Negrita */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-    background-color: #2e7d32; /* Usa el mismo verde oscuro */
-    color: white;
+    font-weight: bold;       /* Texto en negrita */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    
+    /* Colores: Usa el mismo verde oscuro de tus otros botones */
+    background-color: #2e7d32; 
+    color: white;            
+    
+    width: fit-content;      /* Ajusta el ancho al texto */
+    max-width: 90%;          /* Limita el ancho máximo */
+}
+
+/* Ajusta el color del botón principal de "Horario de Atención" si aún no está verde */
+.btn-horario {
+    background: #2e7d32; /* El mismo verde para consistencia */
 }
