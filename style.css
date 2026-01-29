@@ -243,40 +243,29 @@ h1 {
 main {
   margin-top: 120px;
 }
-/* Estilo del nuevo botón de Horario, siguiendo tu estilo existente */
+/* Estilo para cada item de la lista de horarios */
+.horario-contenido li {
+    /* Propiedades clave para que parezca un botón */
+    display: block;          /* Asegura que cada uno esté en su propia línea */
+    padding: 10px 15px;      /* Espaciado interno */
+    margin: 8px auto;        /* Margen entre items y centra horizontalmente */
+    border-radius: 8px;      /* Bordes redondeados */
+    text-align: center;      /* Centra el texto */
+    font-weight: bold;       /* Texto en negrita, como los botones */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    
+    /* Colores - Usaremos un verde similar al de WhatsApp/Instagram */
+    background-color: #2e7d32; /* Un verde oscuro, similar al fondo de tu app */
+    color: white;              /* Texto blanco */
+    
+    /* Control de ancho para que no se estire de más */
+    width: fit-content;      /* Se ajusta al ancho del texto */
+    max-width: 90%;          /* Limita el ancho máximo en pantallas grandes */
+}
+
+/* Ajusta el color del botón principal de "Horario de Atención" 
+   para que coincida con el verde de los items de la lista */
 .btn-horario {
-    background: #FF5733; /* Un color naranja, cámbialo si quieres */
-    color: white; /* Texto en blanco para mejor contraste */
-    /* Tus estilos generales de botón ya aplican aquí automáticamente */
-}
-
-/* Estilos funcionales para ocultar/mostrar */
-.horario-boton {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.horario-contenido {
-    display: none; /* Esto oculta el horario por defecto */
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 0 0 5px 5px;
-    margin-bottom: 20px;
-}
-
-/* Clase para mostrar el contenido cuando el JS la añade */
-.mostrar {
-    display: block;
-}
-
-.horario-contenido ul {
-    list-style-type: none;
-    padding: 0;
+    background: #2e7d32; 
 }
 
