@@ -123,18 +123,19 @@
     <img src="https://raw.githubusercontent.com/estebansabi/LICORERIA-25-ONZAS/7b23d4612bed3e187ae5ad941b5a5ac390a0bfa0/img/LOGO%20HORIZONTAL%20DORADO.JPG.png"
          alt="Licorería 25 Onzas">
 
-    <div class="horario-container social-buttons-top">
+   <div class="horario-container">
     <!-- El botón que se verá igual que los otros -->
-    <a href="#" class="horario-boton btn-horario" onclick="toggleHorario(); return false;">
+    <a href="#" class="horario-boton btn-horario btn-color-primario" onclick="toggleHorario(); return false;">
         Horario de Atención
     </a>
     
     <!-- El contenido que se oculta/muestra -->
     <div class="horario-contenido" id="horarioDetalle">
         <ul>
-            <li>Lunes a Jueves: <time>10:00</time> AM - <time>1:00</time> PM y <time>2:00</time> PM - <time>8:30</time> PM</li>
-            <li>Viernes y Sábado: <time>10:00</time> AM - <time>1:00</time> PM y <time>2:00</time> PM - <time>11:59</time> PM</li>
-            <li>Domingo: Cerrado</li>
+            <!-- A cada LI le ponemos la clase que lo convierte en botón -->
+            <li class="item-boton">Lunes a Jueves: 10:00 AM - 1:00 PM y 2:00 PM - 8:30 PM</li>
+            <li class="item-boton">Viernes y Sábado: 10:00 AM - 1:00 PM y 2:00 PM - 11:59 PM</li>
+            <li class="item-boton">Domingo: Cerrado</li>
         </ul>
     </div>
 </div>
