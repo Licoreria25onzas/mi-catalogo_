@@ -3606,5 +3606,16 @@ function agregarPresentacion(nombre, selectId) {
 </head>
 <body>
   </script>
+  <script>
+    function toggleHorario() {
+        var horarioDetalle = document.getElementById("horarioDetalle");
+        if (horarioDetalle.style.display === "block" || horarioDetalle.style.display === "") {
+            horarioDetalle.style.display = "none";
+        } else {
+            horarioDetalle.style.display = "block";
+        }
+    }
+</script>
+
 </body>
 </html>
