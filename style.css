@@ -336,3 +336,15 @@ main {
   max-height: 3em; /* Limita altura si es responsive */
   overflow: hidden;
 }
+.descripcion {
+  font-size: 14px;
+  margin: 8px 0;
+  line-height: 1.3;
+}
+
+.descripcion strong {
+  font-weight: 900;
+  color: #2c1810;
+  display: block;
+}
+
