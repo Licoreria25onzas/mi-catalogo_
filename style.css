@@ -328,3 +328,11 @@ main {
 .mostrar {
     display: block !important;
 }
+.descripcion {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.4;
+  max-height: 3em; /* Limita altura si es responsive */
+  overflow: hidden;
+}
