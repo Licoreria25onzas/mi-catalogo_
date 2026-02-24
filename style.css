@@ -347,4 +347,10 @@ main {
   color: #2c1810;
   display: block;
 }
+.descripcion strong {
+  font-weight: 900 !important;
+  color: #2c1810 !important;
+  font-family: Arial, sans-serif !important;
+}
+
 
