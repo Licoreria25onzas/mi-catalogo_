@@ -352,5 +352,6 @@ main {
   color: #2c1810 !important;
   font-family: Arial, sans-serif !important;
 }
+p + p{font-weight:900!important;color:#2c1810!important;font-size:14px!important}
 
 
