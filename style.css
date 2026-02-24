@@ -323,9 +323,12 @@ main {
     width: 100% !important;
     box-sizing: border-box !important; /* Crucial para que no se salga */
 }
-div.producto p {
-  font-weight: 900 !important;
-  color: #2c1810 !important;
+.descripcion {
+    font-weight: bold !important;
+    font-size: 14px !important;
+    color: #2c1810 !important;
+    margin: 8px 0 !important;
 }
+
 
 
